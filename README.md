@@ -1,40 +1,31 @@
-ROS 2 Vision-to-Hardware Actuation System
-Overview
+# ROS 2 Vision-to-Hardware Actuation System
 
+## Overview
 This repository contains a robotics integration project that bridges high-level computer vision with low-level physical hardware control. Utilizing ROS 2 Humble on Ubuntu 22.04, the system translates human hand gestures into physical motor actuation. A custom Python node leverages OpenCV and MediaPipe to perform real-time spatial tracking of hand landmarks. By calculating the distance between the thumb and index finger, the system establishes a precise pinch-detection threshold. This boolean state is converted into control signals and transmitted via serial communication to an Arduino Uno, which regulates an L298N motor driver to enable seamless start/stop control of a DC motor based entirely on visual inputs.
-System Architecture
-Hardware Components
 
-    Microcontroller: Arduino Uno
+## System Architecture
 
-    Motor Driver: L298N Dual H-Bridge
+### Hardware Components
+* **Microcontroller:** Arduino Uno
+* **Motor Driver:** L298N Dual H-Bridge
+* **Actuator:** DC BO Motor
+* **Power Supply:** External 12V Battery Source (connected to L298N)
+* **Sensor:** Standard Integrated Web Camera
 
-    Actuator: DC BO Motor
+### Software Stack
+* **Operating System:** Ubuntu 22.04 LTS
+* **Framework:** ROS 2 Humble Hawksbill
+* **Language:** Python 3, C++ (Arduino)
+* **Libraries:** rclpy, OpenCV (cv2), MediaPipe, PySerial
 
-    Power Supply: External 12V Battery Source (connected to L298N)
-
-    Sensor: Standard Integrated Web Camera
-
-Software Stack
-
-    Operating System: Ubuntu 22.04 LTS
-
-    Framework: ROS 2 Humble Hawksbill
-
-    Language: Python 3, C++ (Arduino)
-
-    Libraries: rclpy, OpenCV (cv2), MediaPipe, PySerial
-
-Prerequisites
-
+## Prerequisites
 Before utilizing this package, ensure your system has the following dependencies installed:
 
-    ROS 2 Humble Desktop Install
+* ROS 2 Humble Desktop Install
+* Python computer vision and serial communication libraries:
 
-    Python computer vision and serial communication libraries:
-    Bash
-
-    pip install mediapipe opencv-python pyserial "numpy<2"
+```bash
+pip install mediapipe opencv-python pyserial "numpy<2"
 
     Arduino IDE (for flashing the microcontroller)
 
